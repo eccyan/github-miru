@@ -9,7 +9,7 @@ class Authentication < ActiveRecord::Base
   end
 
   def update_sources(current_user)
-    if current_user && current_user.authentications.empty?
+    if current_user 
       current_authentication = current_user.authentications.first
 
       if blobs.empty?
@@ -31,7 +31,7 @@ class Authentication < ActiveRecord::Base
 
       reload!
       blobs.each do |blob|
-        blob.delay.update_content current_authentication
+        blob.update_content current_authentication
       end
     end
   end
