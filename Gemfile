@@ -95,3 +95,6 @@ gem 'omniauth-github'
 
 # Using IronCache
 gem 'iron_cache_rails'
+
+# Setting TimeOut
+gem "rack-timeout"
