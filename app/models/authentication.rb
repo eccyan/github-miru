@@ -35,7 +35,6 @@ class Authentication < ActiveRecord::Base
       end
     end
   end
-  handle_asynchronously :update_sources
 
   def sources
     blobs.map do |blob|
