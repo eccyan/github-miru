@@ -1,0 +1,31 @@
+<h1>Listing blobs</h1>
+
+<table>
+  <tr>
+    <th>Authentication</th>
+    <th>Branch</th>
+    <th>Head sha</th>
+    <th>Repository name</th>
+    <th>Path</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @blobs.each do |blob| %>
+  <tr>
+    <td><%= blob.authentication_id %></td>
+    <td><%= blob.branch %></td>
+    <td><%= blob.head_sha %></td>
+    <td><%= blob.repository_name %></td>
+    <td><%= blob.path %></td>
+    <td><%= link_to 'Show', blob %></td>
+    <td><%= link_to 'Edit', edit_blob_path(blob) %></td>
+    <td><%= link_to 'Destroy', blob, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Blob', new_blob_path %>

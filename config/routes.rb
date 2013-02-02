@@ -1,5 +1,5 @@
 QiitaHackathon::Application.routes.draw do
-  resources :repositories
+  resources :blobs
 
 
   match "/auth/:provider/callback" => "sessions#callback"  

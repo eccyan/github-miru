@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Authentication:</b>
+  <%= @blob.authentication_id %>
+</p>
+
+<p>
+  <b>Branch:</b>
+  <%= @blob.branch %>
+</p>
+
+<p>
+  <b>Head sha:</b>
+  <%= @blob.head_sha %>
+</p>
+
+<p>
+  <b>Repository name:</b>
+  <%= @blob.repository_name %>
+</p>
+
+<p>
+  <b>Path:</b>
+  <%= @blob.path %>
+</p>
+
+
+<%= link_to 'Edit', edit_blob_path(@blob) %> |
+<%= link_to 'Back', blobs_path %>

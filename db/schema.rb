@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202114038) do
+ActiveRecord::Schema.define(:version => 20130202135620) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(:version => 20130202114038) do
     t.datetime "updated_at",  :null => false
     t.string   "token"
     t.string   "secret"
+  end
+
+  create_table "blobs", :force => true do |t|
+    t.integer  "authentication_id"
+    t.string   "branch"
+    t.string   "head_sha"
+    t.string   "repository_name"
+    t.string   "path"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "repositories", :force => true do |t|
