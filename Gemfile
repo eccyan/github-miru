@@ -80,8 +80,16 @@ gem 'rails-i18n'
 
 # ER diagrams
 group :development do
-  gem "rails-erd"
+  gem 'rails-erd'
 end
 
 # Form helper
-gem "cocoon"
+gem 'cocoon'
+
+# Using Github API
+gem 'github_api'
+
+# Using Omniauth
+gem 'omniauth-openid'
+gem 'omniauth-github'
+

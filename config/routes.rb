@@ -1,4 +1,13 @@
 QiitaHackathon::Application.routes.draw do
+  resources :repositories
+
+
+  match "/auth/:provider/callback" => "sessions#callback"  
+  match "/logout" => "sessions#destroy", :as => :logout  
+  root :to => 'welcome#index'  
+
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
