@@ -7,11 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
     <%= javascript_tag "hljs.initHighlightingOnLoad();" %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
-  <body onload="sh_highlightDocument();">
+  <body>
     <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container">
