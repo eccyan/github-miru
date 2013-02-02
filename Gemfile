@@ -98,3 +98,6 @@ gem 'iron_cache_rails'
 
 # Setting TimeOut
 gem "rack-timeout"
+
+# Using Delay job
+gem 'delayed_job_active_record'

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @authentication = @user.authentications.first
-    @sources = @authentication.sources current_user
+    @sources = @authentication.delay.sources current_user
 
     respond_to do |format|
       format.html # show.html.erb
@@ -86,5 +86,13 @@ class UsersController < ApplicationController
   # GET /users/1/sources
   # GET /users/1/sources.json
   def sources
+    @user = User.find(params[:id])
+    @authentication = @user.authentications.first
+    @sources = @authentication.sources current_user
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user }
+    end
   end
 end
