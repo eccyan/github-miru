@@ -8,7 +8,7 @@ class Authentication < ActiveRecord::Base
     Github.new oauth_token: token
   end
 
-  def sources(current_user)
+  def update_sources(current_user)
     if current_user
       current_authentication = current_user.authentications.first
 
@@ -27,13 +27,19 @@ class Authentication < ActiveRecord::Base
             logger.info e.message
           end
         end
-
-        reload
       end
 
-      blobs.map do |blob|
-        blob.content current_authentication
+      reload!
+      blobs.each do |blob|
+        blob.delay.update_content current_authentication
       end
+    end
+  end
+  handle_asynchronously :update_sources
+
+  def sources
+    blobs.map do |blob|
+      blob.content
     end
   end
 

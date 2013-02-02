@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @authentication = @user.authentications.first
-    @sources = @authentication.delay.sources current_user
+    @authentication.delay.update_sources current_user.authentications.first
+    @sources = @authentication.sources
 
     respond_to do |format|
       format.html # show.html.erb

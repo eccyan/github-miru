@@ -160,17 +160,23 @@ class Blob < ActiveRecord::Base
     Blob.ext_map[ext]
   end
 
-  def content(current_authentication)
+  def update_content(current_authentication)
     if current_authentication
       blob = Rails.cache.fetch "blob_#{head_sha}", expires_in: 1.hour do
-        github = current_authentication.github
-        github.git_data.blobs.get authentication.name, repository_name, head_sha
+        begin
+          github = current_authentication.github
+          github.git_data.blobs.get authentication.name, repository_name, head_sha
+        rescue Github::Error::NotFound => e
+          logger.info e.message
+        end
       end
-      content = Base64.decode64 blob[:content]
-      { language: language, content: content  }
     end
-  rescue Github::Error::NotFound => e
-    logger.info e.message
+  end
+
+  def content
+    blob = Rails.cache.read "blob_#{head_sha}"
+    content = Base64.decode64 blob[:content]
+    { language: language, content: content  }
   end
 
 end
