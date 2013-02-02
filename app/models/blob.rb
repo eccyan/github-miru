@@ -176,7 +176,8 @@ class Blob < ActiveRecord::Base
   def content
     blob = Rails.cache.read "blob_#{head_sha}"
 
-    if blob[:content]
+    @content = nil
+    if blob
       @content = Base64.decode64 blob[:content] 
     end
 
