@@ -9,7 +9,7 @@ class Authentication < ActiveRecord::Base
   end
 
   def update_sources(current_user)
-    if current_user
+    if current_user && current_user.authentications.empty?
       current_authentication = current_user.authentications.first
 
       if blobs.empty?
