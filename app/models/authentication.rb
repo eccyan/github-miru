@@ -11,6 +11,7 @@ class Authentication < ActiveRecord::Base
   def update_sources(current_user)
     if current_user 
       current_authentication = current_user.authentications.first
+      logger.info current_user.inspect
 
       if blobs.empty?
         current_authentication.github.repos.all.each do |repo|
