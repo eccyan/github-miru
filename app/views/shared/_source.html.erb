@@ -1,3 +1,5 @@
-<pre class="source" ><code <%= "class=#{source[:language]}" if source %> >
-<%= source[:content] =%>
-</code></pre>
+<%- if source[:content] %>
+  <pre class="source" ><code <%= "class=#{source[:language]}" if source %> >
+  <%= source[:content] =%>
+  </code></pre>
+<%- end %>
