@@ -1,3 +1,0 @@
-<pre class="<%= "sh_#{source.language}" %>">
-<%= source.blob =%>
-</pre>
