@@ -5,7 +5,7 @@
   <%= @user.name %>
 </p>
 
-<%= render :partial => "source", :collections => @sources %>
+<%= render :partial => 'shared/source', :collection => @sources %>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

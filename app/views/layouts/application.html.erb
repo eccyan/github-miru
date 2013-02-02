@@ -9,7 +9,6 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_tag "hljs.initHighlightingOnLoad();" %>
     <%= csrf_meta_tags %>
-    <script>hljs.initHighlightingOnLoad();</script>
     <%= yield(:head) %>
   </head>
   <body onload="sh_highlightDocument();">
