@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @authentication = @user.authentications.first
     @sources = @authentication.sources current_user
+    require 'pry'; binding.pry
 
     respond_to do |format|
       format.html # show.html.erb

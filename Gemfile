@@ -93,3 +93,5 @@ gem 'github_api'
 gem 'omniauth-openid'
 gem 'omniauth-github'
 
+# Using IronCache
+gem 'iron_cache_rails'

@@ -106,6 +106,12 @@ GEM
     hike (1.2.1)
     httpauth (0.2.0)
     i18n (0.6.1)
+    iron_cache (1.4.0)
+      iron_core (>= 0.5.1)
+    iron_cache_rails (0.1.4)
+      iron_cache (>= 1)
+    iron_core (0.5.1)
+      rest (>= 2.2.0)
     journey (1.0.4)
     jquery-rails (2.2.0)
       railties (>= 3.0, < 5.0)
@@ -132,6 +138,7 @@ GEM
       subexec (~> 0.2.1)
     multi_json (1.5.0)
     multipart-post (1.1.5)
+    net-http-persistent (2.8)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -204,6 +211,11 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     ref (1.0.2)
+    rest (2.2.0)
+      net-http-persistent
+      rest-client (>= 0.3.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec-core (2.12.2)
     rspec-expectations (2.12.1)
       diff-lcs (~> 1.1.3)
@@ -285,6 +297,7 @@ DEPENDENCIES
   github_api
   growl
   guard-spork
+  iron_cache_rails
   jquery-rails
   less-rails
   libv8 (~> 3.11.8)

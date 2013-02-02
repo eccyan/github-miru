@@ -14,19 +14,25 @@ class Authentication < ActiveRecord::Base
 
       if blobs.empty?
         current_authentication.github.repos.all.each do |repo|
-          trees = github.git_data.trees.get name, repo_name, 'master', 'recursive' => true
-          trees.each do |tree|
-            if tree[:type] == 'blob'
-              Repository.create_with_authentication_and_repo_hash(current_authentication, self, repo, tree)
+          begin
+            trees = github.git_data.trees.get name, repo[:name], 'master', 'recursive' => true
+            if trees[:tree]
+              trees[:tree].each do |tree|
+                if tree[:type] == 'blob'
+                  Blob.create_with_github_hashes(current_authentication, self, repo, tree)
+                end
+              end
             end
+          rescue Github::Error::ServiceError => e
+            logger.info e.message
           end
         end
 
         reload
       end
 
-      blobs.map do |repo|
-        repo.blob current_authentication
+      blobs.map do |blob|
+        blob.content current_authentication
       end
     end
   end
