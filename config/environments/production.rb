@@ -66,5 +66,5 @@ QiitaHackathon::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Cache settings
-  config.cache_store = :iron_cache
+  config.cache_store = :iron_cache_store
 end
