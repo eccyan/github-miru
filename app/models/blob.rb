@@ -166,7 +166,7 @@ class Blob < ActiveRecord::Base
         begin
           github = current_authentication.github
           github.git_data.blobs.get authentication.name, repository_name, head_sha
-        rescue Github::Error::NotFound => e
+        rescue Github::Error => e
           logger.info e.message
         end
       end
