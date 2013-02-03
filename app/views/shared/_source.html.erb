@@ -1,5 +1,13 @@
 <%- if source[:content] %>
-  <pre class="source" ><code <%= "class=#{source[:language]}" if source %> >
-  <%= source[:content] =%>
-  </code></pre>
+  <%- if source[:is_image] %>
+    <div class="source" >
+      <img alt='image' width=300 src="data:image/<%= source[:ext].delete '.' %>;base64,<%= Base64.encode64 source[:content] %>">
+    </div>
+  <%- else %>
+    <div class="source" >
+      <pre><code <%= "class=#{source[:language]}" if source %> >
+        <%= source[:content] =%>
+      </code></pre>
+    </div>
+  <%- end %>
 <%- end %>

@@ -139,6 +139,10 @@ class Blob < ActiveRecord::Base
     }
   end
 
+  def image?
+    [".png", ".jpeg", ".jpg", ".gif"].member? ext
+  end
+
   def self.create_with_github_hashes(current_authentication, authentication, repo, tree)
     if current_authentication
       name = authentication.name
@@ -155,8 +159,11 @@ class Blob < ActiveRecord::Base
     logger.info e.message
   end
 
+  def ext
+    File.extname(path) || File.basename(path)
+  end
+
   def language
-    ext = File.extname(path) || File.basename(path)
     Blob.ext_map[ext]
   end
 
@@ -182,7 +189,7 @@ class Blob < ActiveRecord::Base
       @content = Base64.decode64 blob[:content] 
     end
 
-    { language: language, content: @content  }
+    { ext: ext, is_image: image?, language: language,  content: @content  }
   end
 
 end
