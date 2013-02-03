@@ -172,6 +172,7 @@ class Blob < ActiveRecord::Base
       end
     end
   end
+  handle_asynchronously :update_content
 
   def content
     blob = Rails.cache.read "blob_#{head_sha}"

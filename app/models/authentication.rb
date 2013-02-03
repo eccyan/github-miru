@@ -8,10 +8,8 @@ class Authentication < ActiveRecord::Base
     Github.new oauth_token: token
   end
 
-  def update_sources(current_user)
-    if current_user 
-      current_authentication = current_user.authentications.first
-      logger.info current_user.inspect
+  def update_sources(current_authentication)
+    if current_authentication
 
       if blobs.empty?
         current_authentication.github.repos.all.each do |repo|
@@ -28,14 +26,16 @@ class Authentication < ActiveRecord::Base
             logger.info e.message
           end
         end
+
+        reload
       end
 
-      reload!
       blobs.each do |blob|
         blob.update_content current_authentication
       end
     end
   end
+  handle_asynchronously :update_sources
 
   def sources
     blobs.map do |blob|
