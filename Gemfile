@@ -101,3 +101,6 @@ gem "rack-timeout"
 
 # Using Delay job
 gem 'delayed_job_active_record'
+
+# Javascripts
+gem 'jquery-ui-rails'
