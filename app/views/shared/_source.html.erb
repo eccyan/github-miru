@@ -1,13 +1,29 @@
 <%- if source[:content] %>
-  <%- if source[:is_image] %>
-    <div class="source" >
-      <img alt='image' width=300 src="data:image/<%= source[:ext].delete '.' %>;base64,<%= Base64.encode64 source[:content] %>">
-    </div>
-  <%- else %>
-    <div class="source" >
-      <pre><code <%= "class=#{source[:language]}" if source %> >
-        <%= source[:content] =%>
-      </code></pre>
-    </div>
-  <%- end %>
+  <div class="uc-container">
+    <%- if source[:is_image] %>
+        <div class="uc-initial-content">
+          <img alt='image' width=322 src="data:image/<%= source[:ext].delete '.' %>;base64,<%= Base64.encode64 source[:content] %>">
+          <span class="icon-eye"></span>
+        </div>
+        <div class="uc-final-content">
+          <img alt='image' width=322 src="data:image/<%= source[:ext].delete '.' %>;base64,<%= Base64.encode64 source[:content] %>">
+          <div class="title"><h4><%= source[:path] %></h4></div>
+          <span class="icon-cancel"></span>
+        </div>
+    <%- else %>
+      <div class="uc-initial-content">
+        <pre><code <%= "class=#{source[:language]}" if source %> >
+<%= source[:content] %>
+        </code></pre>
+        <span class="icon-eye"></span>
+      </div>
+      <div class="uc-final-content">
+        <pre><code <%= "class=#{source[:language]}" if source %> >
+<%= source[:content] %>
+        </code></pre>
+        <div class="title"><h4><%= source[:path] %></h4></div>
+        <span class="icon-cancel"></span>
+      </div>
+    <%- end %>
+  </div><!-- / uc-container -->
 <%- end %>

@@ -5,7 +5,9 @@
   <%= @user.name %>
 </p>
 
-<%= render :partial => 'shared/source', :collection => @sources %>
+<div id="grid" class="grid clearfix">
+  <%= render :partial => 'shared/source', :collection => @sources %>
+</div><!-- / grid -->
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
